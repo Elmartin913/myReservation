@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+     <ul class="list-group">
+         {% if r1 %}
+         <li class="list-group-item">Sala: {{ r1.name }}</li>
+         <li class="list-group-item">Liczba miejsc: {{ r1.capacity }}</li>
+         <li class="list-group-item">Opis: {{ r1.description }}</li>
+         {% else %}
+         <h3>Sala w nieczynna</h3>
+         {% endif %}
+     </ul>
+     <ul class="list-group">
+         <h3>Zajęte terminy</h3>
+         {% if b1 %}
+             {% for b in b1%}
+         <li class="list-group-item">Data rezerwacji: {{ b.date }}</li>
+             {% endfor %}
+         {% else %}
+         <h4>Brak zarezerwowanych terminów</h4>
+         {% endif %}
+     </ul>
+
+     <form method="POST">
+          <div class="form-group">
+            <label >Data rezerwacji (rrrr-mm-dd):</label>
+            <input type="date" min="{{ time_now }}" class="form-control" name="date" value="{{ time_now }}">
+          </div>
+          <div class="form-group">
+            <label>Uwagi:</label>
+            <input type="text" class="form-control" name="comments" value="brak">
+          </div>
+          <button type="submit" class="btn btn-default">Rezerwój</button>
+     </form>
+
+</body>
+</html>

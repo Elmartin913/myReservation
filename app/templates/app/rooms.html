@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {% if all_rooms %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nazwa sali</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for r in all_rooms %}
+        <tbody>
+                <td><a href="/room/{{ r.id }}">{{ r.name }}</a></td><td>{{ s }}</td>
+            <td><a href="/room/modify/{{ r.id }}">Edytuj</a></td>
+            <td><a href="/room/delete/{{ r.id }}" >Usuń</a></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% else%}
+    <p>Brak dostępnych sal</p>
+    {% endif %}
+    <a type="button" class="btn btn-info" href="/room/new/">Dodaj sale</a>
+</body>
+</html>
